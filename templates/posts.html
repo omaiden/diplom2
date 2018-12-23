@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+
+{% block css %}
+<style>
+	 .post img{
+		height: 300px;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="post">
+<ul>
+	{% for post in object_list %}
+		<li>
+			<p><a href="/mypost/{{post.id}}">title</a></p>
+			<p>{{post.id}}</p>
+			<p>{{post.text}}</p>
+			<p>{{post.time}}</p>
+			<p>{{post.found}}</p>
+			<p>{{post.post_type}}</p>
+			<p>{{post.relative}}</p>
+			{% for v in post.mising.all %}
+			<p><img src="{{v.image.url}}" alt=""></p>
+			{% endfor %}
+			{% for m in post.victim.all %}
+			<p><img src="{{m.image.url}}" alt=""></p>
+			{% endfor %}
+		</li>	
+		<br>
+		<br>
+
+	{% endfor %}
+</ul>
+
+<br>
+{% if page_obj.has_next %}
+	<a href="{{request.path}}?page={{page_obj.next_page_number}}">Next</a>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}
+

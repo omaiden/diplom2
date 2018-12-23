@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Надежда</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'css/template1.css' %}">
+		{% block css %}{% endblock %}
+
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/"><img src="{% static 'images/logo2.png' %}" alt=""></a>
+				</div>
+		
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="/posts">Новостная лента</a></li>
+						<li><a href="/post_missing">Разместить сообщение</a></li>
+						<li><a href="/post_victim">Разместить объявление</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Мои сообщения</a></li>
+						{% if user.username %}
+							<li><p>{{ user.username }}</p></li>
+							<li><a href="{% url 'logout' %}">Выйти</a></li>
+						{% else %}
+							<li><a href="{% url 'login' %}">Войти</a></li>
+							<li><a href="/regis">Регистрация</a></li>
+						{% endif %}
+						<!-- <li class="login"><a href="#">Войти</a></li> -->
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+
+
+		<div class="container body">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+					{% block content %}{% endblock %}
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 maxim">
+					<!-- {% load staticfiles %} -->
+					<img src="{% static 'images/family3.jpg' %}" class="img-responsive" alt="">
+					<h3>Есть место, куда возвращаемся, это дом.</h3>
+					<h3>Есть люди, которых любим, это семья.</h3>
+					<h3>Есть оба, это счастье.</h3>
+					<h3>Мы рады что можем помочь кому-то обрести свое счастье.</h3>
+
+				</div>
+			</div><!-- end main row -->
+		</div> <!-- end container body -->
+	    <footer>
+	        <div class="splitter"></div>
+				<ul>
+				    <li>
+				        <div class="icon" data-icon="e"></div>
+				        <div class="text">
+				            <h4>About</h4>
+				            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique justo eu sollicitudin pretium. Nam scelerisque arcu at dui porttitor, non viverra sapien pretium. Nunc nec dignissim nunc. Sed eget est purus. Sed convallis, metus in dictum feugiat, odio orci rhoncus metus. <a href="#">Read more</a></div>
+				        </div>
+				    </li>
+				    <li>
+				        <div class="icon" data-icon="a"></div>
+				        <div class="text">
+				            <h4>Archive</h4>
+				            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique justo eu sollicitudin pretium. Nam scelerisque arcu at dui porttitor, non viverra sapien pretium. Nunc nec dignissim nunc. Sed eget est purus. Sed convallis, metus in dictum feugiat, odio orci rhoncus metus. <a href="#">Read more</a></div>
+				        </div>
+				    </li>
+				    <li>
+				        <div class="icon" data-icon="s"></div>
+				        <div class="text">
+				            <h4>Cloud</h4>
+				            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique justo eu sollicitudin pretium. Nam scelerisque arcu at dui porttitor, non viverra sapien pretium. Nunc nec dignissim nunc. Sed eget est purus. Sed convallis, metus in dictum feugiat, odio orci rhoncus metus. <a href="#">Read more</a></div>
+				        </div>
+				    </li>
+				</ul>
+	 
+			<div class="bar">
+			    <div class="bar-wrap">
+			        <ul class="links">
+			            <li><a href="#">Home</a></li>
+			            <li><a href="#">Contact Us</a></li>
+			            <li><a href="#">About</a></li>
+			        </ul>
+			 		
+			        <div class="social">
+			            <a href="#" class="fb">
+							<!-- <i class="fa fa-facebook"  class="icon"></i> -->
+			                <span  class="icon fa fa-facebook"></span>
+			                <span class="info">
+			                    <span class="follow">Become a fan Facebook</span>
+			                    <span class="num">9,999</span>
+			                </span>
+			            </a>
+			 
+			            <a href="#" class="tw">
+			                <span class="icon fa fa-twitter"></span>
+			                <span class="info">
+			                    <span class="follow">Follow us Twitter</span>
+			                    <span class="num">9,999</span>
+			                </span>
+			            </a>
+			 
+			            <a href="#" class="rss">
+			                <span class="icon fa fa-vk"></span>
+			                <span class="info">
+			                    <span class="follow">Subscribe RSS</span>
+			                    <span class="num">9,999</span>
+			                </span>
+			            </a>
+			        </div>
+			        <div class="clear"></div>
+			        <div class="copyright">Made by Susu</div>
+			    </div>
+			</div>
+	    </footer>
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- <script src="{% static 'js/template1.js' %}"></script> -->
+		{% block js %}{% endblock %}
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+	</body>
+</html>

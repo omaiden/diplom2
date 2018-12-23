@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+<!-- {% load static %} -->
+
+	{% block css %}
+		<link rel="stylesheet" href="{% static 'css/regis1.css' %}">
+	{% endblock %}
+	{% block content %}
+	      {% if form.errors %}
+        <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
+      {% endif %}  
+					<div class="background">
+					
+						<form action="." method="POST" role="form">
+							<input type='hidden' name='csrfmiddlewaretoken' value='randomchars' />
+							{% csrf_token %}
+							{{ form.as_p }}
+
+							<div class="but">
+							<button type="submit" class="btn btn-primary" class="submit">Продолжать</button>
+							</div>
+						</form>
+					</div>
+	{% endblock %}

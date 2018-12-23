@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block css %}{% endblock %}
+
+{% block content %} 
+	<form action="." method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="post">
+			<p><label for="">Содержание</label>{{form1.text}}</p>
+		</div>
+		<div class="relative">
+			<p>Кого сообщим если есть ноыую информацию?</p>
+			<p><label for="">ФИО</label>{{form3.fullname}}</p>
+			<p><label for="">Адрес</label>{{form3.adress}}</p>
+			<p><label for="">Телефон</label>{{form3.telephone}}</p>
+			<p><label for="">Эл. почта</label>{{form3.email}}</p>
+		</div>
+		<div class="missing">
+			<p>Информации о пропавшем человке:</p>
+			<p><label for="">ФИО</label>{{form2.name}}</p>
+			<p><label for="">Сокрашенное имя</label>{{form2.nickname}}</p>
+			<p><label for="">День рождения</label>{{form2.birthday}}</p>
+			<p><label for="">Где потерял</label>{{form2.missing_place}}</p>
+			<p><label for="">Когда потерял</label>{{form2.missing_time}}</p>
+			<p><label for="">Состояние</label>{{form2.status}}</p>
+			<p><label for="">Изображение</label>{{form2.image}}</p>
+		</div>	
+		<input type="hidden" name='next' value='/login'>
+		<input type="submit" value="Продолжить">
+	</form>
+{% endblock %}
+
+{% block js %}{% endblock %}

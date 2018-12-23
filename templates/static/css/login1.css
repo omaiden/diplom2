@@ -1,0 +1,32 @@
+.loginform {
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    background-color: #ded1d1;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 13px;
+    z-index: 2;
+}
+
+
+input#id_password {
+    width:  300px;
+}
+
+input#id_username {
+    width:  300px;
+}
+
+
+.login_form {
+    font-size: 20px;
+    text-align:  center;
+    background-color: #b0dffd;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 34px;
+    margin-top: 120px;
+}

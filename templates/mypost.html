@@ -1,0 +1,38 @@
+{% extends "template.html" %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+	<h3><a href="{% url 'mypost' post.id %">{{post.title}}</a></h3>
+		<p>{{post.id}}</p>
+		<p>{{post.text}}</p>
+		<p>{{post.time}}</p>
+		<p>{{post.found}}</p>
+		{% for v in post.mising.all %}
+			<p><img src="{{v.image.url}}" alt=""></p>
+		{% endfor %}
+			{% for m in post.victim.all %}
+			<p><img src="{{m.image.url}}" alt=""></p>
+		{% endfor %}
+	<p>Комментарий</p>
+	{% for comment in post.comments.all %}
+		<h4><strong>{{comment.author}}</strong></h4>
+		<h6><p>{{comment.date}}</p></h6>
+		<p>{{comment.content|linebreaks}}</p>
+	{% endfor %}
+
+	{% if user.username %}
+		<form action="{% url 'mypost' post.id %}" method='POST'>
+			{% csrf_token %}
+			<p><label for="">Комментарий</label></p>
+			{{form.content}}
+			<br>
+			<input type="submit" value="Комментировать">
+		</form>
+	{% else %}
+		<p>Только полноправные пользователи могут оставлять комментарии. Войдите, пожалуйста.</p>
+	{% endif%}
+{% endblock %}
+
+{% block js %}{% endblock %}
+

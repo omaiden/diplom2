@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+
+{% block css %}
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/login1.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-push-2">
+	<div class="login_form">
+	
+	<form action="." method="POST">
+		{% csrf_token %}
+		{% for key,value in form.errors.items %}
+			{{value}}
+		{% endfor %}
+		<p><label for="">Логин :</label>{{form.username}}</p><br>	
+		<p><label for="">Парол :</label>{{form.password}}</p>
+		<input type="hidden" name='next' value='/'>
+		<input type="submit" value='Submit'>
+	</form>
+	</div> <!-- end login_form -->
+</div> <!-- end col -->
+{% endblock %}
+
+{% block js %}{% endblock %}
+
