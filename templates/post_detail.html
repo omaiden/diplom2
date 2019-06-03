@@ -1,0 +1,55 @@
+{% extends "template.html" %}
+
+{% block css %}
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/post_detail2.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="title">{{post.post_type}}({{post.id}})</h3>
+		<p class="time">{{post.time}}</p>
+		<!-- <p>{{post.found}}</p> -->
+		<p id="text">{{post.text}}</p>
+
+		{% for m in post.missing.all %}
+			<div class="image"><img src="{{m.image.url}}" alt=""></div>
+			<h5>Соотвествующие новости:</h5>
+			{% for mp in m.missing_person.all %}	
+				<p><strong><a href="/post/{{mp.victim.post.id}}">{{mp.victim.post.post_type}} ({{mp.victim.post.id}})</a></strong></p>
+			{% endfor %}
+		{% endfor %}
+		{% for v in post.victim.all %}
+			<div class="image"><img src="{{v.image.url}}" alt=""></div>
+			<h5>Соотвествующие новости:</h5>
+			{% for vp in v.victim_person.all %}	
+				<p><strong><a href="/post/{{vp.missing_person.post.id}}">{{vp.missing_person.post.post_type}} ({{vp.missing_person.post.id}})</a></strong></p>
+			{% endfor %}
+		{% endfor %}
+	<hr id="in_content" width="100%" align="center">
+	<div class="comments">
+		<h4><strong>Комментарий</strong></h4>
+		{% for comment in post.comments.all %}
+			<p class="comment"><strong class="author">{{comment.user}}</strong>  -  {{comment.content}}</p>
+			<p class="time">{{comment.time}}</p>
+			<hr id="in_comment" width="80%" align="center">
+		{% endfor %}
+
+		{% if user.username %}
+			<form action="{% url 'post' post.id %}" method='POST'>
+				{% csrf_token %}
+	<!-- 			<p><label for="">Комментарий</label></p> -->
+				{{form.content}}
+				<br>
+				<input type="submit" value="Комментировать">
+			</form>
+		{% else %}
+			<p>Только полноправные пользователи могут оставлять комментарии. Войдите, пожалуйста!</p>
+		{% endif%}
+		</div>
+
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}
+

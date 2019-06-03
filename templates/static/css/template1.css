@@ -1,7 +1,13 @@
-body {
+.background2 {
     background: url(../images/bg.jpg);
 }
 
+.background1 {
+    padding-left: 10px;
+    padding-right: 10px;
+    /* color: #37bcec; */
+    background-color: #37bcec;
+}
 .navbar {
     background-color: #37bcec;
     font-size: 17px;
@@ -30,6 +36,11 @@ nav{
     border: 1px solid gray;
     background-color: #f4f7f9;
     border-radius: 20px;
+    margin-bottom: 20px;
+    margin-top: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 
@@ -39,10 +50,13 @@ nav{
     border-radius: 10px;
     color: #110000;
     background-color: #37bcec;
+    margin-top: 14px;
 }
 
 
-
+.title {
+    color: #111498;
+}
 
 @import url(http://weloveiconfonts.com/api/?family=zocial);
  

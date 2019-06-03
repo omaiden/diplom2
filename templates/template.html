@@ -10,13 +10,18 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		{% load static %}
-		<link rel="stylesheet" href="{% static 'css/template1.css' %}">
+		<link rel="stylesheet" href="{% static 'css/template4.css' %}">
 		{% block css %}{% endblock %}
 
 	</head>
 	<body>
+		<div class="background1">
+			<div class="banner" width="100%">
+				<img width="100%" src="{% static 'images/banner.jpg' %}" alt="">
+			</div>
+			<div class="background2">
 		<nav class="navbar navbar-inverse" role="navigation">
-			<div class="container">
+			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -31,14 +36,16 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/posts">Новостная лента</a></li>
-						<li><a href="/post_missing">Разместить сообщение</a></li>
-						<li><a href="/post_victim">Разместить объявление</a></li>
+						<li><a href="/posts">Новости</a></li>
+						<li><a href="/post_missing">Найду пропавшего</a></li>
+						<li><a href="/post_victim">Встречу неопознанного</a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Мои сообщения</a></li>
+<!-- 						<li><a href="/train">Train</a></li>
+<li><a href="/delete">Delete</a></li> -->
 						{% if user.username %}
+							<li><a href="/mypost">Мои сообщения</a></li>
 							<li><p>{{ user.username }}</p></li>
 							<li><a href="{% url 'logout' %}">Выйти</a></li>
 						{% else %}
@@ -59,47 +66,24 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 maxim">
 					<!-- {% load staticfiles %} -->
-					<img src="{% static 'images/family3.jpg' %}" class="img-responsive" alt="">
-					<h3>Есть место, куда возвращаемся, это дом.</h3>
-					<h3>Есть люди, которых любим, это семья.</h3>
-					<h3>Есть оба, это счастье.</h3>
-					<h3>Мы рады что можем помочь кому-то обрести свое счастье.</h3>
-
+					<img src="{% static 'images/family3.jpg' %}" class="img-responsive" alt=""><br>
+					<p>Есть место, куда возвращаемся, это дом.</p><br>
+					<p>Есть люди, которых любим, это семья.</p><br>
+					<p>Есть оба, это счастье.</p><br>
+					<p>Мы рады что можем помочь кому-то обрести свое счастье.</p>
 				</div>
 			</div><!-- end main row -->
 		</div> <!-- end container body -->
+	    </div> <!-- end background2 -->
+	    </div> <!-- end background1 -->
+
 	    <footer>
-	        <div class="splitter"></div>
-				<ul>
-				    <li>
-				        <div class="icon" data-icon="e"></div>
-				        <div class="text">
-				            <h4>About</h4>
-				            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique justo eu sollicitudin pretium. Nam scelerisque arcu at dui porttitor, non viverra sapien pretium. Nunc nec dignissim nunc. Sed eget est purus. Sed convallis, metus in dictum feugiat, odio orci rhoncus metus. <a href="#">Read more</a></div>
-				        </div>
-				    </li>
-				    <li>
-				        <div class="icon" data-icon="a"></div>
-				        <div class="text">
-				            <h4>Archive</h4>
-				            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique justo eu sollicitudin pretium. Nam scelerisque arcu at dui porttitor, non viverra sapien pretium. Nunc nec dignissim nunc. Sed eget est purus. Sed convallis, metus in dictum feugiat, odio orci rhoncus metus. <a href="#">Read more</a></div>
-				        </div>
-				    </li>
-				    <li>
-				        <div class="icon" data-icon="s"></div>
-				        <div class="text">
-				            <h4>Cloud</h4>
-				            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique justo eu sollicitudin pretium. Nam scelerisque arcu at dui porttitor, non viverra sapien pretium. Nunc nec dignissim nunc. Sed eget est purus. Sed convallis, metus in dictum feugiat, odio orci rhoncus metus. <a href="#">Read more</a></div>
-				        </div>
-				    </li>
-				</ul>
-	 
 			<div class="bar">
 			    <div class="bar-wrap">
 			        <ul class="links">
-			            <li><a href="#">Home</a></li>
+			            <li><a href="/">Home</a></li>
 			            <li><a href="#">Contact Us</a></li>
-			            <li><a href="#">About</a></li>
+			            <li><a href="/about">About Us</a></li>
 			        </ul>
 			 		
 			        <div class="social">
@@ -123,7 +107,7 @@
 			            <a href="#" class="rss">
 			                <span class="icon fa fa-vk"></span>
 			                <span class="info">
-			                    <span class="follow">Subscribe RSS</span>
+			                    <span class="follow">Subscribe VK</span>
 			                    <span class="num">9,999</span>
 			                </span>
 			            </a>
@@ -140,6 +124,7 @@
 		<!-- <script src="{% static 'js/template1.js' %}"></script> -->
 		{% block js %}{% endblock %}
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-
+	
+	
 	</body>
 </html>

@@ -3,21 +3,63 @@
 
 	{% block css %}
 		<link rel="stylesheet" href="{% static 'css/regis1.css' %}">
+		<link rel="stylesheet" href="{% static 'css/regis2.css' %}">
 	{% endblock %}
 	{% block content %}
+	<div class="content">
 	      {% if form.errors %}
         <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
       {% endif %}  
 					<div class="background">
 					
-						<form action="." method="POST" role="form">
+<!-- 						<form action="." method="POST" role="form">
+	<input type='hidden' name='csrfmiddlewaretoken' value='randomchars' />
+	{% csrf_token %}
+	{{ form.as_p }}
+
+	<div class="but">
+	<button type="submit" class="btn btn-primary" class="submit">Продолжать</button>
+	</div>
+</form> -->
+
+						<form id="contactform" name="contact" method="POST" action="." role="form">
 							<input type='hidden' name='csrfmiddlewaretoken' value='randomchars' />
 							{% csrf_token %}
-							{{ form.as_p }}
+						  <p class="note"><span class="req">*</span> Поля звездочки обязательны для заполнения</p>
+						  <div class="row">
+						    <label for="id_fullname">ФИО <span class="req">*</span></label>
+						    {{form.fullname}}
+						  </div>			
 
-							<div class="but">
-							<button type="submit" class="btn btn-primary" class="submit">Продолжать</button>
-							</div>
+						  <div class="row">
+						    <label for="id_username">Логин <span class="req">*</span></label>
+						    {{form.username}}
+						  </div>
+						 
+						  <div class="row">
+						    <label for="id_email">Эл. почта <span class="req">*</span></label>
+						    {{form.email}}
+						  </div>
+						 
+						  <div class="row">
+						    <label for="id_password1">Пароль <span class="req">*</span></label>
+						    {{form.password1}}
+						  </div>						  
+
+						  <div class="row">
+						    <label for="id_password2">Подтвердите пароль <span class="req">*</span></label>
+						    {{form.password2}}
+						  </div>
+						 
+<!-- 						  <div class="row">
+  <label for="message">Подтвердите пароль <span class="req">*</span></label>
+  <textarea name="message" id="message" class="txtarea" tabindex="4" required></textarea>
+</div> -->
+						 
+						  <div class="center">
+						    <input class="btn btn-success" type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Зарегистрироваться">
+						  </div>
 						</form>
 					</div>
+	</div>
 	{% endblock %}

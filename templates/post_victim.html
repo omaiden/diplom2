@@ -1,33 +1,45 @@
 {% extends "template.html" %}
 
-{% block css %}{% endblock %}
+{% block css %}
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/regis1.css' %}">
+	<link rel="stylesheet" href="{% static 'css/regis2.css' %}">
+	<link rel="stylesheet" href="{% static 'css/post_missing3.css' %}"> 
+	<link rel="stylesheet" href="{% static 'css/post_victim1.css' %}"> 
+
+{% endblock %}
 
 {% block content %}
+<div class="content">
 	{% if form.errors %}
-        <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
+        <p class="error">Возникла проблема. Проверьте пожалуйста!</p>
     {% endif %} 
 	<form action="." method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		<div class="post">
-			<p><label for="">Содержание</label>{{form1.text}}</p>
+			<p class="txtarea_input"><label for="id_text">Содержание </label>{{form1.text}}</p>
 		</div>
+		<br>
 		<div class="relative">
-			<p>Кого сообщим если есть ноыую информацию?</p>
-			<p><label for="">ФИО</label>{{form3.fullname}}</p>
-			<p><label for="">Адрес</label>{{form3.adress}}</p>
-			<p><label for="">Телефон</label>{{form3.telephone}}</p>
-			<p><label for="">Эл. почта</label>{{form3.email}}</p>
+			<p>Кем сообщит если есть новую информацию?</p>
+			<p class="input"><label for="id_fullname">ФИО</label>{{form3.fullname}}</p>
+			<p class="input"><label for="id_address">Адрес</label>{{form3.address}}</p>
+			<p class="input"><label for="id_telephone">Телефон</label>{{form3.telephone}}</p>
+			<p class="input"><label for="id_email">Эл. почта</label>{{form3.email}}</p>
 		</div>
-
+		<br>
 		<div class="victim">
-			<p>Информации о видимом человке:</p>
-			<p><label for="">Где увиделся</label>{{form2.place}}</p>
-			<p><label for="">Когда увиделся</label>{{form2.date}}</p>
-			<p><label for="">Изображение</label>{{form2.image}}</p>
-			<p><label for="">Другие информации</label>{{form2.additional_information}}</p>
+			<p>Информации о найденном человеке:</p>
+			<p class="input"><label for="id_place">Где увиделся</label>{{form2.place}}</p>
+			<p class="input"><label for="id_date">Когда увиделся</label>{{form2.date}}</p>
+			<p ><label for="">Изображение</label>{{form2.image}}</p>
+			<p class="input"><label for="id_additional_information">Другие информации</label>{{form2.additional_information}}</p>
 		</div>
 		<button type="submit" class="btn btn-primary" class="submit">Продолжать</button>
 	</form>
+</div>
 {% endblock %}
 
-{% block js %}{% endblock %}
+{% block js %}
+	<script src="{% static 'js/post_missing1.js' %}"></script>
+{% endblock %}

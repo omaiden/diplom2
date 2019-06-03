@@ -1,43 +1,46 @@
 {% extends "template.html" %}
 
 {% block css %}
-<style>
-	 .post img{
-		height: 300px;
-	}
-</style>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/posts1.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="post">
-<ul>
+
 	{% for post in object_list %}
-		<li>
-			<p><a href="/mypost/{{post.id}}">title</a></p>
-			<p>{{post.id}}</p>
+		<div class="post content">
+			<h3 ><a class="title" href="/post/{{post.id}}">{{post.post_type}} ({{post.id}})</a></h3>
+			<p class="time">{{post.time}}</p>
 			<p>{{post.text}}</p>
-			<p>{{post.time}}</p>
-			<p>{{post.found}}</p>
-			<p>{{post.post_type}}</p>
-			<p>{{post.relative}}</p>
-			{% for v in post.mising.all %}
-			<p><img src="{{v.image.url}}" alt=""></p>
+			<!-- <p>{{post.relative}}</p> -->
+			{% for m in post.missing.all %}
+				<div class="image"><img src="{{m.image.url}}" alt=""></div>
+				<h5>Соотвествующие новости:</h5>
+				{% for mp in m.missing_person.all %}
+					<p><a href="/post/{{mp.victim.post.id}}">{{mp.victim.post.id}}</a></p>
+				{% endfor %}
+
 			{% endfor %}
-			{% for m in post.victim.all %}
-			<p><img src="{{m.image.url}}" alt=""></p>
-			{% endfor %}
-		</li>	
+			{% for v in post.victim.all %}
+				<div class="image"><img src="{{v.image.url}}" alt=""></div>
+				<h5>Соотвествующие новости:</h5>
+				{% for vp in v.victim_person.all %}	
+					<p><a href="/post/{{vp.missing_person.post.id}}">{{vp.missing_person.post.id}}</a></p>
+				{% endfor %}
+			{% endfor %}	
 		<br>
 		<br>
+		</div>
 
 	{% endfor %}
-</ul>
+
 
 <br>
 {% if page_obj.has_next %}
 	<a href="{{request.path}}?page={{page_obj.next_page_number}}">Next</a>
 {% endif %}
-</div>
+
 {% endblock %}
 
 {% block js %}{% endblock %}

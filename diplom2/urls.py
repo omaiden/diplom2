@@ -24,17 +24,22 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
 	path('admin/', admin.site.urls, name='admin'),
-	path('', views.index),
+    path('', views.index),
+	path('about/', views.about),
 	path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
 	path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
 	path('regis/', views.regis, name='regis'),
 	path('post_missing/', views.post_missing),
     path('post_victim/', views.post_victim),
-    path('posts/', views.PostList.as_view(template_name='posts.html')),
+    path('posts/', views.PostList.as_view()),
     path('thanks/', views.thanks, name='thanks'),
     path('image/', views.image),
-    path('post/<int:pk>/', views.PostDetail.as_view(), name='post'),
-    path('mypost/<int:pk>/', views.mypost, name='mypost')
+    #path('post/<int:pk>/', views.PostDetail.as_view(), name='post'),
+    path('post/<int:pk>/', views.post_detail, name='post'),
+    path('mypost/', views.Mypost.as_view(), name='mypost'),
+    path('delete/', views.delete_everything),
+    path('train/', views.train),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()

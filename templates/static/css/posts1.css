@@ -1,0 +1,26 @@
+hr#in_content {
+    border-top: 1px solid #959fc7;
+}
+
+.post {
+	border: 1px solid #959fc7;
+	border-radius: 20px;
+	margin-top: 20px;
+}
+
+.image {
+    text-align: center;
+}
+
+.post img{
+	height: 300px;
+}
+
+.title {
+	color: #111498;
+}
+
+p.time {
+    color: #afb2c5;
+    padding-left: 90px;
+}

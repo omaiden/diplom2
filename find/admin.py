@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post_type, Post, Relative, Missing_person, Victim, Comment
+from .models import Post_type, Post, Relative, Missing_person, Victim, Comment, Match
 
 class CommentInline(admin.TabularInline):
 	model = Comment
@@ -16,4 +16,5 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Relative)
 admin.site.register(Missing_person)
 admin.site.register(Victim)
+admin.site.register(Match)
 

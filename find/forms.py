@@ -36,10 +36,6 @@ class Missing_personForm(forms.ModelForm):
         }
 
 
-
-
-
-
 	# def save(self):
 	# 	Missing_person.objects.create(name=self.cleaned_data['name'], nickname=self.cleaned_data['nickname'], birthday=self.cleaned_data['birthday'], missing_place=self.cleaned_data['missing_place'], missing_time=self.cleaned_data['missing_time'], status=self.cleaned_data['status'])
 
@@ -60,13 +56,6 @@ class VictimForm(forms.ModelForm):
             'date': DateInput(),
         }
 
-# class ImageForm(forms.ModelForm):
-# 	class Meta:
-# 		model = Image
-# 		fields = ['image',]
-			
-	# def save(self):
-	# 	Image.objects.create(image=self.cleaned_data['image'])
 
 class RegistrationForm(forms.Form):
 	fullname = forms.CharField(label="ФИО", max_length=50, initial='')
@@ -74,6 +63,12 @@ class RegistrationForm(forms.Form):
 	email = forms.EmailField(label="Эл. почта", initial='xyz@mail.com')
 	password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput())
 	password2 = forms.CharField(label="Подтвердите пароль", widget=forms.PasswordInput())
+	
+	def __init__(self, *args, **kwargs):
+		super(RegistrationForm, self).__init__(*args, **kwargs)
+		for visible in self.visible_fields():
+			visible.field.widget.attrs['class'] = 'txt'
+	
 	def clean_password2(self):
 		if 'password1' in self.cleaned_data:
 			password1 = self.cleaned_data['password1']

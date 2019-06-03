@@ -24,25 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 path_and_rename_missing = PathAndRename(os.path.join(BASE_DIR, 'images/missing'))
 path_and_rename_victim = PathAndRename(os.path.join(BASE_DIR, 'images/victim'))
-# def path_and_rename(path):
-#     def wrapper(instance, filename):
-#         ext = filename.split('.')[-1]
-#         # get filename
-#         if instance.pk:
-#             filename = '{}.{}'.format(instance.pk, ext)
-#         else:
-#             # set filename as random string
-#             filename = '{}.{}'.format(uuid4().hex, ext)
-#         # return the whole path to the file
-#         return os.path.join(path, filename)
-#     return wrapper
-
-# def get_image_missings_path(instance, filename):
-#     return os.path.join('images/missings', str(instance.id), filename)
-
-# def get_image_victims_path(instance, filename):
-#     return os.path.join('images/victims', str(instance.id), filename)
-
 
 
 class Post_type(models.Model):
@@ -56,7 +37,7 @@ class Post_type(models.Model):
 
 class Relative(models.Model):
     fullname = models.CharField(max_length=50)
-    adress = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True)
     telephone = models.CharField(max_length=12)
     email = models.EmailField(null=True)
 
@@ -123,6 +104,12 @@ class Comment(models.Model):
     time = models.DateTimeField(auto_now_add=True)
 
 
+class Match(models.Model):
+   missing_person = models.ForeignKey(Missing_person, on_delete=models.CASCADE, related_name="missing_person")
+   victim = models.ForeignKey(Victim, on_delete=models.CASCADE, related_name="victim_person")
+   exactly = models.BooleanField(default=False)
+
+   class Admin: pass
 
 
 
